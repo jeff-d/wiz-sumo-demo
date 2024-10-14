@@ -1,0 +1,34 @@
+{
+    "eventVersion": "1.09",
+    "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAZ47RMXET7RZV7XZYP",
+        "arn": "arn:aws:iam::680721692967:user/soc",
+        "accountId": "680721692967",
+        "accessKeyId": "AKIAZ47RMXETS7UENL3H",
+        "userName": "soc"
+    },
+    "eventTime": "2024-01-18T00:57:14Z",
+    "eventSource": "iam.amazonaws.com",
+    "eventName": "DeleteAccessKey",
+    "awsRegion": "us-west-1",
+    "sourceIPAddress": "184.72.9.79",
+    "userAgent": "Boto3/1.26.48 Python/3.8.17 Linux/6.2.0-1017-aws Botocore/1.29.48",
+    "requestParameters": {
+        "userName": "Intern",
+        "accessKeyId": "AKIAZ47RMXET7GXTXK4O"
+    },
+    "responseElements": null,
+    "requestID": "be8f6b57-4969-4fd7-881c-d669d8cc0a0f",
+    "eventID": "cad21282-0989-4f05-8726-c8b06a092ca5",
+    "readOnly": false,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "680721692967",
+    "eventCategory": "Management",
+    "tlsDetails": {
+        "tlsVersion": "TLSv1.2",
+        "cipherSuite": "ECDHE-RSA-AES128-GCM-SHA256",
+        "clientProvidedHostHeader": "iam.amazonaws.com"
+    }
+}

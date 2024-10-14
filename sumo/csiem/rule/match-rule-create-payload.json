@@ -1,0 +1,39 @@
+POST to https: //api.sumologic.com/api/sec/v1/rules/templated
+{
+    "fields": {
+        "assetField": "string",
+        "category": "string",
+        "enabled": true,
+        "entitySelectors": [
+            {
+                "expression": "string",
+                "entityType": "string"
+            }
+        ],
+        "isPrototype": true,
+        "name": "string",
+        "parentJaskId": "string",
+        "summaryExpression": "string",
+        "tags": [
+            "string"
+        ],
+        "tuningExpressionIds": [
+            "string"
+        ],
+        "descriptionExpression": "string",
+        "nameExpression": "string",
+        "filterExpression": "string",
+        "valueFields": [
+            "string"
+        ],
+        "valueExpression": "string",
+        "groupByFields": [
+            "string"
+        ],
+        "score": 0,
+        "version": 0,
+        "baselineWindowSize": "string",
+        "retentionWindowSize": "string",
+        "baselineType": "GLOBAL"
+    }
+}

@@ -1,0 +1,89 @@
+{
+    "data": {
+        "hasNextPage": false,
+        "total": 1,
+        "objects": [
+            {
+                "category": "Unknown/Other",
+                "contentType": "RULE",
+                "created": "2023-08-11T14: 56: 50.131000",
+                "createdBy": "",
+                "deleted": false,
+                "enabled": false,
+                "entitySelectors": [
+                    {
+                        "expression": "device_hostname",
+                        "entityType": "_hostname"
+                    },
+                    {
+                        "expression": "srcDevice_hostname",
+                        "entityType": "_hostname"
+                    },
+                    {
+                        "expression": "device_ip",
+                        "entityType": "_ip"
+                    },
+                    {
+                        "expression": "srcDevice_ip",
+                        "entityType": "_ip"
+                    },
+                    {
+                        "expression": "user_username",
+                        "entityType": "_username"
+                    }
+                ],
+                "id": "MATCH-S00402",
+                "isPrototype": false,
+                "lastUpdated": "2024-05-06T12: 31: 42.339000",
+                "lastUpdatedBy": "jd+quicklab@sumologic.com",
+                "name": "Normalized Security Signal",
+                "parentJaskId": "None",
+                "status": {
+                    "status": "ACTIVE",
+                    "message": "None"
+                },
+                "ruleId": 402,
+                "ruleSource": "sumo",
+                "ruleType": "templated match",
+                "signalCount07d": 1,
+                "signalCount24h": 1,
+                "summaryExpression":"Threat: {{threat_name
+                }
+            } detected on host: {
+                {device_hostname
+                }
+            }","suppressionWindowSize": "None",
+            "tags": [],
+            "hasOverride": false,
+            "tagsOverride": "None",
+            "isPrototypeOverride": "None",
+            "entitySelectorsOverride": "None",
+            "nameOverride": "None",
+            "summaryExpressionOverride": "None",
+            "suppressionWindowSizeOverride": "None",
+            "assetField": "deprecated",
+            "descriptionExpression": "Passes through an alert from an endpoint security product and adjusts the severity accordingly based on the severity provided in the log.",
+            "expression": "threat_ruleType = 'direct'",
+            "nameExpression":"{{metadata_vendor
+            }
+        } {
+            {metadata_product
+            }
+        } - {
+            {threat_signalName
+            }
+        }","scoreMapping": {
+            "type": "fieldValue",
+            "default": 0,
+            "field": "normalizedSeverity",
+            "mapping": "None"
+        },
+        "stream": "record",
+        "descriptionExpressionOverride": "None",
+        "nameExpressionOverride": "None",
+        "scoreMappingOverride": "None"
+    }
+]
+},
+"errors": []
+}

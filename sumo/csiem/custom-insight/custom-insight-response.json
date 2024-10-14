@@ -1,0 +1,22 @@
+{
+    "data": {
+        "id": "b740f15e-ef0f-485f-bafd-b7e3bd2a37ec",
+        "name": "CSPM - Exposed Secrets on AWS EC2 Instance",
+        "description": "you dropped your (access) keys !!",
+        "severity": "CRITICAL",
+        "dynamicSeverity": [],
+        "ordered": true,
+        "enabled": true,
+        "created": "2024-01-12T20:18:56.586086+00:00",
+        "lastUpdated": "2024-01-23T01:51:28.676666+00:00",
+        "ruleIds": [],
+        "signalNames": [
+            "*exposes cleartext cloud keys"
+        ],
+        "tags": [
+            "_mitreAttackTactic:TA0006",
+            "_mitreAttackTechnique:T1552"
+        ]
+    },
+    "errors": []
+}

@@ -1,0 +1,41 @@
+{
+    "version": "0",
+    "id": "7a049553-11ac-f2a5-528c-85f8fdc5cf60",
+    "detail-type": "AWS API Call via CloudTrail",
+    "source": "aws.iam",
+    "account": "444455556666",
+    "time": "2024-01-19T18:26:36Z",
+    "region": "us-west-1",
+    "resources": [],
+    "detail": {
+        "eventVersion": "1.05",
+        "userIdentity": {
+            "type": "IAMUser",
+            "principalId": "AIDACKCEVSQ6C2EXAMPLE",
+            "arn": "arn:aws:iam::444455556666:user/JaneDoe",
+            "accountId": "444455556666",
+            "accessKeyId": "AKIAI44QH8DHBEXAMPLE",
+            "userName": "Intern",
+            "sessionContext": {
+                "attributes": {
+                    "mfaAuthenticated": "false",
+                    "creationDate": "2014-07-15T21:39:40Z"
+                }
+            },
+            "invokedBy": "signin.amazonaws.com"
+        },
+        "eventTime": "2014-07-15T21:40:14Z",
+        "eventSource": "iam.amazonaws.com",
+        "eventName": "DeleteAccessKey",
+        "awsRegion": "us-west-1",
+        "sourceIPAddress": "signin.amazonaws.com",
+        "userAgent": "signin.amazonaws.com",
+        "requestParameters": {
+            "userName": "intern",
+            "policyName": "ReadOnlyAccess-JaneDoe-201407151307"
+        },
+        "responseElements": null,
+        "requestID": "9EXAMPLE-0c68-11e4-a24e-d5e16EXAMPLE",
+        "eventID": "cEXAMPLE-127e-4632-980d-505a4EXAMPLE"
+    }
+}

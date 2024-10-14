@@ -1,0 +1,46 @@
+{
+    "version": "0",
+    "id": "4e562084-b2cd-436e-91ff-0a0b1da48daa",
+    "detail-type": "AWS API Call via CloudTrail",
+    "source": "aws.iam",
+    "account": "680721692967",
+    "time": "2024-02-21T17:53:12Z",
+    "region": "us-east-1",
+    "resources": [],
+    "detail": {
+        "eventVersion": "1.09",
+        "userIdentity": {
+            "type": "IAMUser",
+            "principalId": "AIDAZ47RMXETQBZNU2YPS",
+            "arn": "arn:aws:iam::680721692967:user/jdeininger",
+            "accountId": "680721692967",
+            "accessKeyId": "ASIAZ47RMXETX4ITR3S6",
+            "userName": "jdeininger",
+            "sessionContext": {
+                "attributes": {
+                    "creationDate": "2024-02-21T14:28:27Z",
+                    "mfaAuthenticated": "true"
+                }
+            }
+        },
+        "eventTime": "2024-02-21T17:53:09Z",
+        "eventSource": "iam.amazonaws.com",
+        "eventName": "DeleteAccessKey",
+        "awsRegion": "us-east-1",
+        "sourceIPAddress": "173.52.243.124",
+        "userAgent": "AWS Internal",
+        "requestParameters": {
+            "userName": "intern",
+            "accessKeyId": "AKIAZ47RMXETVLWYSMXN"
+        },
+        "responseElements": "None",
+        "requestID": "13d83c09-a0c2-4330-b09d-0677c5c41aa7",
+        "eventID": "8df3d0af-0f63-4031-a290-8761d08f5673",
+        "readOnly": false,
+        "eventType": "AwsApiCall",
+        "managementEvent": true,
+        "recipientAccountId": "680721692967",
+        "eventCategory": "Management",
+        "sessionCredentialFromConsole": "true"
+    }
+}

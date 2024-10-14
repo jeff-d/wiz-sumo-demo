@@ -1,0 +1,35 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObjectVersionForReplication",
+                "s3:GetObjectVersionAcl",
+                "s3:GetObjectVersionTagging"
+            ],
+            "Resource": [
+                "arn:aws:s3:::quicklab-hp6f-ct-us-west-1-20240109165452153500000001/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetReplicationConfiguration"
+            ],
+            "Resource": [
+                "arn:aws:s3:::quicklab-hp6f-ct-us-west-1-20240109165452153500000001"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ReplicateObject",
+                "s3:ReplicateDelete",
+                "s3:ReplicateTags"
+            ],
+            "Resource": "arn:aws:s3:::wiz-cloud-events-us-west-1-20240115215554/*"
+        }
+    ]
+}

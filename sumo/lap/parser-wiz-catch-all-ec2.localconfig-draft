@@ -1,0 +1,165 @@
+###############################
+WORKING !!!
+###############################
+
+[parser]
+# flatten issue.evidence[[{},{}]] into issue.evidence[{},{}]
+JSON_FLATTEN_SINGLE_LISTS = true
+
+# if "resource.type" = "virtualMachine", pass _$log_entry to [transform:map_resource_attrs]
+VARIABLE_TRANSFORM_INDEX = resource.type 
+VARIABLE_TRANSFORM:virtualMachine = map_resource_attrs 
+
+# pass resource.id to [transform:parse_arn] if it begins with "arn:"
+# if invoked, overwrites device_uniqueId (set using full ARN by [transform:map_resource_attrs]) with more precise one
+TRANSFORM_IF:resource.id:^arn:.* = parse_arn
+
+
+[transform:map_resource_attrs]
+# expects _$log_entry
+# maps log field resource attributes to CSE schema attributes not already set in downstream Log Mapping
+# would normally handle using custom CSE Log Mapping, but 'split' mapping not working
+SET:arn = {{resource.id}} 
+
+
+[transform:parse_arn]
+# expects AWS ARN like arn:partition:service:region:account-id:resource-type/resource-id
+# maps AWS ARN segment values to CSE schema attributes not already set in downstream Log Mapping
+# regex demo: https://regex101.com/r/Q5TLHq/1
+FORMAT = REGEX
+REGEX = (?<stringtype>arn):(?<partition>[a-z]{3}|[a-z]{3}-[a-z]{2}-[a-z]{3}|[a-z]{3}-[a-z]{2}):(?<service>[a-z0-9]+):(?<region>[a-z]{2}-[a-z]{4,9}-\d{1}):(?<account>\d{12}):(?<resourceType>\w+)\/(?<resourceId>[a-zA-Z0-9]{1,4}-[a-zA-Z0-9]+)
+# SET:cloud_provider = {{partition}} # already set by CSE Log Mapping "Wiz Catch All"
+SET:service = {{service}}
+# SET:cloud_region = {{region}} # already set by CSE Log Mapping "Wiz Catch All"
+# SET:accountId = {{account}} # already set by CSE Log Mapping "Wiz Catch All"
+# SET:normalizedResource = {{resourceType}} # not all AWS resource types are valid CSE normalizedResource values
+# would normally handle using custom CSE Log Mapping, but 'split' mapping not working
+SET:instanceId = {{resourceId}} # handle using custom CSE Log Mapping
+
+# avoid polluting fields dictionary with redundant entries
+DROP:stringtype = true
+DROP:partition = true
+DROP:service = true
+DROP:region = true
+DROP:account = true
+DROP:resourceType = true
+DROP:resourceId = true
+
+
+###############################
+DEBUGGING
+###############################
+
+[parser]
+# flatten issue.evidence[[{},{}]] into issue.evidence[{},{}]
+JSON_FLATTEN_SINGLE_LISTS = true
+
+# last writer wins
+TRANSFORM_IF:issue.evidence.1.name:^AWS Secret Key.* = parse_name
+TRANSFORM_IF:issue.evidence.2.name:^AWS Secret Key.* = parse_name
+TRANSFORM_IF:issue.evidence.3.name:^AWS Secret Key.* = parse_name
+TRANSFORM_IF:issue.evidence.4.name:^AWS Secret Key.* = parse_name
+TRANSFORM_IF:issue.evidence.5.name:^AWS Secret Key.* = parse_name
+TRANSFORM_IF:issue.evidence.6.name:^AWS Secret Key.* = parse_name
+TRANSFORM_IF:issue.evidence.7.name:^AWS Secret Key.* = parse_name
+TRANSFORM_IF:issue.evidence.8.name:^AWS Secret Key.* = parse_name
+
+[transform:parse_name]
+# expects a value like "AWS Secret Key (AccessKeyId=AKIAZ47RMXET6WIZSUMO)"
+FORMAT = REGEX
+REGEX = (?<throwAway>^AWS Secret Key.*)(?<accessKeyId>[A-Z0-9]{20})
+DROP:throwAway = true
+
+
+
+
+
+
+
+
+##########
+# SCRATCH SPACE
+##########
+
+# https://aws.amazon.com/blogs/security/a-safer-way-to-distribute-aws-credentials-to-ec2/
+REGEX = (?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9])
+
+# pass field dictionary to [transform:ie_three] if named field present in _$log_entry
+TRANSFORM_IF_PRESENT: issue.evidence.3.EvidenceObjectType = ie_three
+
+[transform:ie_three]
+SET:x.test.ie-three={{issue.evidence.3.EvidenceObjectType}}
+
+
+# if issue.evidence is present, get AccessKeyId and InstanceId from evidence items
+TRANSFORM_IF_PRESENT:issue.evidence = issue_evidence_recursion
+
+[transform:issue_evidence_recursion]
+# expects _$log_entry ?? or issue.evidence ??
+
+DROP:r|^_.* = true
+DROP:r|^control.* = true
+DROP:r|^issue .* = true
+DROP:r|^resource.* = true 
+DROP:r|^trigger.* = true 
+
+
+SET:newlist = {{1.type}}
+
+# if "1.EvidenceObjectType" = "SECRET_INSTANCE", pass issue.evidence.1 to [transform:get_access_key_id]
+VARIABLE_TRANSFORM_INDEX: 1.EvidenceObjectType 
+VARIABLE_TRANSFORM:SECRET_INSTANCE = get_access_key_id
+
+VARIABLE_TRANSFORM_INDEX: 2.EvidenceObjectType 
+VARIABLE_TRANSFORM:SECRET_INSTANCE = get_access_key_id
+
+VARIABLE_TRANSFORM_INDEX: 3.EvidenceObjectType 
+VARIABLE_TRANSFORM:SECRET_INSTANCE = get_access_key_id
+
+[transform:get_access_key_id]
+SET:secretName = {{name}}
+
+# arn:aws:ec2:us-west-2:111122223333:instance/i-03400b91140af947b
+# arn:partition:service:region:account-id:resource-type/resource-id
+# Mappable Attributes in an ARN: cloud_provider, cloud_service, cloud_region, accountId, normalizedResource("instance") device_uniqueId
+
+# REGEX = (?<stringtype>arn):(?<partition>[a-z]{3}|[a-z]{3}-[a-z]{2}-[a-z]{3}|[a-z]{3}-[a-z]{2}):(?<service>[a-z0-9]+):(?<region>[a-z]{2}-[a-z]{4,9}-\d{1}):(?<account>\d{12}):(?<type>\w+)\/(?<id>[a-zA-Z0-9]{1,4}-[a-zA-Z0-9]+)
+    
+    (?<stringtype>arn):
+    cloud_provider      (?<partition>[a-z]{3}|[a-z]{3}-[a-z]{2}-[a-z]{3}|[a-z]{3}-[a-z]{2}):
+    cloud_service       (?<service>[a-z0-9]+):
+    cloud_region        (?<region>[a-z]{2}-[a-z]{4,9}-\d{1}):
+    accountId           (?<account>\d{12}):
+    normalizedResource  (?<type>\w+)\/
+    device_uniqueId     (?<id>[a-zA-Z0-9]{1,4}-[a-zA-Z0-9]+)
+
+
+TRANSFORM_IF_PRESENT:1 = ie1
+
+[transform:ie1]
+SET:device_uniqueId = {{externalId}}
+
+
+TRANSFORM:event.user_name = adjust_username
+DROP:first = TRUE
+DROP:last = TRUE
+
+[transform:adjust_username]
+REGEX = (?<first>\S+)\s+(?<last>\S+)
+SET:event.user_name = {{first}}.{{last}}
+
+
+# [transform:parse_log_description]
+# REGEX = ^(?P<log_description>.*?)[:.](?:[^.:]*?\.)?(?:\s+(?P<kv_pairs>.*)|$)
+
+# REGEX for InstanceId: (?<instanceId>i-[a-z0-9]{17})
+
+# "issue.evidence.1.1.externalId": "i-03400b91140af947b",
+
+# SET:device_uniqueId = {{_tmp_instanceId}}
+
+# SET:<field> = <string>
+
+# SET:targetUser_userId = {{issue.evidence.1.1.name}}
+
+##########

@@ -1,0 +1,41 @@
+{
+    "rules": [
+        {
+            "content_type": "RULE",
+            "created_by": "jd+sandbox@sumologic.com",
+            "enabled": true,
+            "id": "MATCH-U00002",
+            "is_prototype": false,
+            "last_updated_by": "jd+sandbox@sumologic.com",
+            "name": "Wiz - Application endpoint on a VM/serverless exposes cleartext cloud keys",
+            "rule_description": "",
+            "rule_source": "user",
+            "summary_expression": "Threat: {{threat_name}} detected on host: {{device_hostname}}",
+            "tags": [
+                "_mitreAttackTactic:TA0006",
+                "_mitreAttackTechnique:T1552"
+            ],
+            "category": "Credential Access",
+            "created": "2024-01-15T21:07:09.679000",
+            "last_updated": "2024-02-22T15:35:50.500000",
+            "mode": "ACTIVE",
+            "pattern_type": "templated_match",
+            "stream": "record",
+            "score_mapping": {
+                "default": 5,
+                "type": "fieldValue",
+                "field": "normalizedSeverity",
+                "mapping": []
+            },
+            "description_expression": "{{threat_signalSummary}}",
+            "name_expression": "{{metadata_vendor}} - {{threat_signalName}}",
+            "expression": "metadata_vendor=\"Wiz\"\nAND (threat_name = 'wc-id-1135' OR threat_name = 'ef843ec6-602f-463a-928b-550bb32d7053')",
+            "entity_selectors": [
+                {
+                    "expression": "device_uniqueId",
+                    "entity_type": "cloudinstance"
+                }
+            ]
+        }
+    ]
+}

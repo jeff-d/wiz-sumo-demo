@@ -1,0 +1,18 @@
+{
+    "api.version": "v1",
+    "source": {
+        "name": "wiz-sumo-demo",
+        "category": "wiz",
+        "automaticDateParsing": true,
+        "multilineProcessingEnabled": false,
+        "useAutolineMatching": false,
+        "forceTimeZone": false,
+        "filters": [],
+        "cutoffTimestamp": 0,
+        "encoding": "UTF-8",
+        "fields": {},
+        "hashAlgorithm": "MD5",
+        "messagePerRequest": true,
+        "sourceType": "HTTP"
+    }
+}

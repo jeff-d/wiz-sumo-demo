@@ -1,0 +1,39 @@
+[parser]
+# flatten issue.evidence[[{},{}]] into issue.evidence[{},{}]
+JSON_FLATTEN_SINGLE_LISTS = true
+
+# pass resource.id to [transform:parse_arn] if it begins with "arn:"
+TRANSFORM_IF:resource.id:^arn:.* = parse_arn
+
+# last writer wins
+TRANSFORM_IF:issue.evidence.1.name:^AWS Secret Key.* = parse_evidence_name
+TRANSFORM_IF:issue.evidence.2.name:^AWS Secret Key.* = parse_evidence_name
+TRANSFORM_IF:issue.evidence.3.name:^AWS Secret Key.* = parse_evidence_name
+TRANSFORM_IF:issue.evidence.4.name:^AWS Secret Key.* = parse_evidence_name
+TRANSFORM_IF:issue.evidence.5.name:^AWS Secret Key.* = parse_evidence_name
+TRANSFORM_IF:issue.evidence.6.name:^AWS Secret Key.* = parse_evidence_name
+TRANSFORM_IF:issue.evidence.7.name:^AWS Secret Key.* = parse_evidence_name
+TRANSFORM_IF:issue.evidence.8.name:^AWS Secret Key.* = parse_evidence_name
+
+
+[transform:parse_evidence_name]
+# expects a value like "AWS Secret Key (AccessKeyId=AKIAZ47RMXET6WIZSUMO)"
+# regex demo: https://regex101.com/r/ciBGIK/1
+FORMAT = REGEX
+REGEX = ^AWS Secret Key.*(?<accessKeyId>[A-Z0-9]{20})
+
+
+[transform:parse_arn]
+# expects AWS ARN like arn:partition:service:region:account-id:resource-type/resource-id
+# regex demo: https://regex101.com/r/Q5TLHq/1
+FORMAT = REGEX
+REGEX = (?<stringtype>arn):(?<partition>[a-z]{3}|[a-z]{3}-[a-z]{2}-[a-z]{3}|[a-z]{3}-[a-z]{2}):(?<service>[a-z0-9]+):(?<region>[a-z]{2}-[a-z]{4,9}-\d{1}):(?<account>\d{12}):(?<resourceType>\w+)\/(?<resourceId>[a-zA-Z0-9]{1,4}-[a-zA-Z0-9]+)
+SET:instanceId = {{resourceId}}
+
+# avoid polluting fields dictionary with redundant entries
+DROP:stringtype = true
+DROP:partition = true
+DROP:region = true
+DROP:account = true
+DROP:resourceType = true
+DROP:resourceId = true

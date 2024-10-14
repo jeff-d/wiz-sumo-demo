@@ -1,0 +1,6 @@
+{
+    "detail-type": "RequestResponse Invocation via AWS cli",
+    "detail": {
+        "eventName": "UpdateUserData"
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "trigger": {
+        "source": "ISSUE",
+        "type": "Created",
+        "ruleId": "594c3f76-7818-4697-a2ee-a38e9c8f7d6d",
+        "ruleName": "brad-dausses-sumo-testing",
+        "updatedFields": " status field was changed from null to OPEN,  severity field was changed from null to INFORMATIONAL, ",
+        "changedBy": "Wiz"
+    },
+    "issue": {
+        "id": "11e05700-1335-4962-ab33-1be84363f3b7",
+        "status": "OPEN",
+        "severity": "INFORMATIONAL",
+        "created": "2024-02-21T17:40:04.013114Z",
+        "projects": "WizSumoEvent, ",
+        "evidence": [
+            [
+                {
+                    "EvidenceObjectType": "VIRTUAL_NETWORK",
+                    "externalId": "vpc-0acefd8af1686d40d",
+                    "name": "quicklab-hp6f-vpc"
+                }
+            ]
+        ]
+    },
+    "resource": {
+        "id": "arn:aws:ec2:us-west-1:680721692967:vpc/vpc-0acefd8af1686d40d",
+        "name": "quicklab-hp6f-vpc",
+        "type": "vpc",
+        "cloudPlatform": "AWS",
+        "subscriptionId": "680721692967",
+        "subscriptionName": "jdsumo",
+        "region": "us-west-1",
+        "status": "Active",
+        "cloudProviderURL": "https://us-west-1.console.aws.amazon.com/vpc/home?region=us-west-1#VpcDetails:VpcId=vpc-0acefd8af1686d40d"
+    },
+    "control": {
+        "id": "wc-id-1934",
+        "name": "AWS VPC is not configured with an EC2 service endpoint",
+        "description": "This AWS VPC does not have a VPC endpoint created for the Amazon EC2 service.\n\nTo improve the security posture of your VPC, you can configure Amazon EC2 to use an interface VPC endpoint. Interface endpoints are powered by AWS PrivateLink, a technology that enables you to access Amazon EC2 API operations privately. It restricts all network traffic between your VPC and Amazon EC2 to the Amazon network. Because endpoints are supported within the same Region only, you cannot create an endpoint between a VPC and a service in a different Region. This prevents unintended Amazon EC2 API calls to other Regions.",
+        "severity": "INFORMATIONAL"
+    }
+}

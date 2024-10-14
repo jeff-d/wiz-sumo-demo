@@ -1,0 +1,135 @@
+{
+    "api.version": "v1",
+    "sources": [
+        {
+            "name": "API TEST - wiz-sumo-demo",
+            "category": "wiz",
+            "automaticDateParsing": true,
+            "multilineProcessingEnabled": false,
+            "useAutolineMatching": false,
+            "forceTimeZone": false,
+            "filters": [],
+            "cutoffTimestamp": 0,
+            "encoding": "UTF-8",
+            "fields": {},
+            "hashAlgorithm": "MD5",
+            "messagePerRequest": true,
+            "sourceType": "HTTP"
+        },
+        {
+            "name": "cloudtrail-aws-admins",
+            "description": "Privileged AWS User IDs, uploaded via CSV, used with the CloudTrail App. Reference: https://help.sumologic.com/docs/integrations/amazon-aws/cloudtrail/#enable-sumo-logic-to-track-aws-admin-activity",
+            "category": "admin_users",
+            "automaticDateParsing": false,
+            "multilineProcessingEnabled": false,
+            "useAutolineMatching": false,
+            "forceTimeZone": false,
+            "filters": [],
+            "cutoffTimestamp": 0,
+            "encoding": "UTF-8",
+            "fields": {},
+            "messagePerRequest": false,
+            "sourceType": "HTTP"
+        },
+        {
+            "schemaRef": {
+                "type": "AWS Cost Explorer"
+            },
+            "state": {
+                "state": "Collecting"
+            },
+            "config": {
+                "accessID": "AKIAZ47RMXETQ36XWPFY",
+                "name": "costexplorer-us-west-1",
+                "description": "collects Cost Explorer logs for us-west-1",
+                "regions": [
+                    "us-west-1"
+                ],
+                "fields": {
+                    "_siemForward": false,
+                    "account": "wiz-sumo-demo"
+                },
+                "accessKey": "********",
+                "granularity": [
+                    "daily",
+                    "monthly"
+                ],
+                "costMetrics": [
+                    "AmortizedCost"
+                ],
+                "category": "quicklab/hp6f/aws/us-west-1/costexplorer"
+            },
+            "sourceType": "Universal"
+        },
+        {
+            "name": "quicklab-hp6f-trail-us-west-1",
+            "description": "collects logs for the QuickLab trail",
+            "category": "quicklab/hp6f/aws/us-west-1/cloudtrail",
+            "automaticDateParsing": true,
+            "multilineProcessingEnabled": true,
+            "useAutolineMatching": true,
+            "contentType": "AwsCloudTrailBucket",
+            "forceTimeZone": false,
+            "filters": [],
+            "cutoffTimestamp": 0,
+            "encoding": "UTF-8",
+            "fields": {},
+            "thirdPartyRef": {
+                "resources": [
+                    {
+                        "serviceType": "AwsCloudTrailBucket",
+                        "path": {
+                            "type": "S3BucketPathExpression",
+                            "bucketName": "quicklab-hp6f-ct-us-west-1-20240109165452153500000001",
+                            "pathExpression": "AWSLogs/*",
+                            "useVersionedApi": false
+                        },
+                        "authentication": {
+                            "type": "AWSRoleBasedAuthentication",
+                            "roleARN": "arn:aws:iam::680721692967:role/quicklab-hp6f-SumoRole"
+                        }
+                    }
+                ]
+            },
+            "scanInterval": 300000,
+            "paused": false,
+            "sourceType": "Polling"
+        },
+        {
+            "name": "quicklab-hp6f-vpc-flowlogs",
+            "description": "Flow Logs for quicklab-hp6f-vpc",
+            "category": "quicklab/hp6f/aws/us-west-1/network/flowlogs",
+            "automaticDateParsing": true,
+            "multilineProcessingEnabled": true,
+            "useAutolineMatching": true,
+            "forceTimeZone": false,
+            "defaultDateFormats": [
+                {
+                    "format": "epoch",
+                    "locator": "\\s(\\d{10,13})\\s\\d{10,13}"
+                }
+            ],
+            "filters": [],
+            "cutoffTimestamp": 0,
+            "encoding": "UTF-8",
+            "fields": {},
+            "messagePerRequest": false,
+            "sourceType": "HTTP"
+        },
+        {
+            "name": "wiz-sumo-demo",
+            "category": "wiz",
+            "automaticDateParsing": true,
+            "multilineProcessingEnabled": false,
+            "useAutolineMatching": false,
+            "forceTimeZone": false,
+            "filters": [],
+            "cutoffTimestamp": 0,
+            "encoding": "UTF-8",
+            "fields": {},
+            "hashAlgorithm": "MD5",
+            "messagePerRequest": true,
+            "sourceType": "HTTP"
+        }
+    ]
+}

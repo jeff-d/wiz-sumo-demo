@@ -1,0 +1,44 @@
+{
+    "IamInstanceProfile": {
+        "Arn": "arn:aws:iam::680721692967:instance-profile/wiz-sumo-demo-asg-instance-profile"
+    },
+    "NetworkInterfaces": [
+        {
+            "DeleteOnTermination": true,
+            "DeviceIndex": 0,
+            "Groups": [
+                "sg-0e1e20f323092e88d",
+                "sg-039b65dd2eb5bcefc"
+            ]
+        }
+    ],
+    "ImageId": "resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+    "InstanceType": "t3.micro",
+    "KeyName": "quicklab-hp6f",
+    "UserData": "IyEvYmluL2Jhc2gKCiMgdGVzdGVkIHdpdGggQW1hem9uIExpbnV4IDIwMjMKCiMgZ2V0IGFkbWluIHByaXZpbGVnZXMKc3VkbyBzdQoKCiMgaW5zdGFsbCBwYWNrYWdlcwpzdWRvIGRuZiB1cGRhdGUgLXkKc3VkbyBkbmYgaW5zdGFsbCAteSBqcQpqcSAtLXZlcnNpb24Kc3VkbyBkbmYgaW5zdGFsbCAteSBodHRwZC54ODZfNjQKCgojIGNvbmZpZ3VyZSBBV1MgQ0xJCnByaW50ZiAiJXNcbiIgIlBSRVBQSU5HIEFXU0NMSSBmb3IgRUMyLVVTRVIuLi4iClRPS0VOPSQoY3VybCAtWCBQVVQgImh0dHA6Ly8xNjkuMjU0LjE2OS4yNTQvbGF0ZXN0L2FwaS90b2tlbiIgLUggIlgtYXdzLWVjMi1tZXRhZGF0YS10b2tlbi10dGwtc2Vjb25kczogMjE2MDAiKQpleHBvcnQgUkVHSU9OPSQoY3VybCAtSCAiWC1hd3MtZWMyLW1ldGFkYXRhLXRva2VuOiAkVE9LRU4iIC1zICJodHRwOi8vMTY5LjI1NC4xNjkuMjU0L2xhdGVzdC9tZXRhLWRhdGEvcGxhY2VtZW50L3JlZ2lvbiIpCmV4cG9ydCBIT1NUTkFNRT0kKGN1cmwgLUggIlgtYXdzLWVjMi1tZXRhZGF0YS10b2tlbjogJFRPS0VOIiAtcyAiaHR0cDovLzE2OS4yNTQuMTY5LjI1NC9sYXRlc3QvbWV0YS1kYXRhL2hvc3RuYW1lIikKYXdzIGNvbmZpZ3VyZSBzZXQgZGVmYXVsdC5yZWdpb24gJHtSRUdJT059CmF3cyBjb25maWd1cmUgc2V0IGRlZmF1bHQub3V0cHV0IGpzb24KYXdzIGNvbmZpZ3VyZSBzZXQgZGVmYXVsdC5jbGlfaGlzdG9yeSBlbmFibGVkCmF3cyBjb25maWd1cmUgc2V0IGRlZmF1bHQuY2xpX3BhZ2VyICcnCmF3cyBjb25maWd1cmUgc2V0IGNyZWRlbnRpYWxfc291cmNlICJFYzJJbnN0YW5jZU1ldGFkYXRhIgoKCiMgZ2V0IFNlY3JldHMgTWFuYWdlciBzZWNyZXQKU0VDUkVUPSQoYXdzIHNlY3JldHNtYW5hZ2VyIGdldC1zZWNyZXQtdmFsdWUgXAogICAgLS1wcm9maWxlIGRlZmF1bHQgXAogICAgLS1yZWdpb24gdXMtd2VzdC0xIFwKICAgIC0tc2VjcmV0LWlkICJpbnRlcm4tYXV0b2dlbmVyYXRlZC1hY2Nlc3NrZXkiIFwKICAgIC0tcXVlcnkgJ1NlY3JldFN0cmluZycgXAogICAgLS1vdXRwdXQgdGV4dCBcCikgCgoKIyBwb3B1bGF0ZSBkZWZhdWx0IHBhZ2UKIyBlY2hvICI8YnI+ICQoaG9zdG5hbWUgLWYpIDxicj4gPGhyPiA8YnI+UFNTVC4uLkRvIHlvdSB3YW50IHRvIGtub3cgYSBzZWNyZXQ/PGJyPkhlcmUncyBhbiBBY2Nlc3NLZXlJZDogJFNFQ1JFVCBhbmQgU2VjcmV0QWNjZXNzS2V5OiBFdDIxTWk3aEJHMGVjdFFKeXQzYWwwd1VrQWpLNEZpZVJtY3pmZWJIPGJyPiIgPiAvdmFyL3d3dy9odG1sL2luZGV4Lmh0bWwKCmNhdCA+PiAvdmFyL3d3dy9odG1sL2luZGV4Lmh0bWwgPDwhCjxicj4gCiQoaG9zdG5hbWUgLWYpIAo8YnI+IAo8aHI+CjxoMT5EZW1vOiBMZWFreSBLZXlzPC9oMT4gCjxwPlBTU1QuLi5EbyB5b3Ugd2FudCB0byBrbm93IGEgc2VjcmV0PyBIZXJlJ3Mgb25lOjwvcD4KPHByZT4KewogICAgImF3c19hY2Nlc3Nfa2V5X2lkIjogIiRTRUNSRVQiLAogICAgImF3c19zZWNyZXRfYWNjZXNzX2tleSI6ICJFdDIxTWk3aEJHMGVjdFFKeXQzYWwwd1VrQWpLNEZpZVJtY3pmZWJIIgp9CjwvcHJlPgohCgoKIyBlbmFibGUgYW5kIHN0YXJ0IHNlcnZpY2UKc3VkbyBzeXN0ZW1jdGwgZW5hYmxlIGh0dHBkLnNlcnZpY2UgCnN1ZG8gc3lzdGVtY3RsIHN0YXJ0IGh0dHBkLnNlcnZpY2UKc3VkbyBzeXN0ZW1jdGwgc3RhdHVzIGh0dHBkLnNlcnZpY2UKCgojIGdpdmUgZWMyLXVzZXIgcGVybWlzc2lvbnMgdG8gbW9kaWZ5IGFwYWNoZQp1c2VybW9kIC1hIC1HIGFwYWNoZSBlYzItdXNlcgpjaG93biAtUiBlYzItdXNlcjphcGFjaGUgL3Zhci93d3cKY2htb2QgMjc3NSAvdmFyL3d3dwoKCiMgYWRkIGdyb3VwIHdyaXRlIHBlcm1pc3Npb25zIGFuZCB0byBzZXQgdGhlIGdyb3VwIElEIG9uIGZ1dHVyZSBzdWJkaXJlY3RvcmllcwpmaW5kIC92YXIvd3d3IC10eXBlIGQgLWV4ZWMgY2htb2QgMjc3NSB7fSBcOwpmaW5kIC92YXIvd3d3IC10eXBlIGYgLWV4ZWMgY2htb2QgMDY2NCB7fSBcOwoKCiMgY3JlYXRlIG91dHB1dCBsb2dzCm91dHB1dCA6IHsgYWxsIDogJ3wgdGVlIC1hIC92YXIvbG9nL2Nsb3VkLWluaXQtb3V0cHV0LmxvZycgfQ==",
+    "TagSpecifications": [
+        {
+            "ResourceType": "instance",
+            "Tags": [
+                {
+                    "Key": "Project",
+                    "Value": "wiz-sumo-demo"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "quicklab-hp6f-wiz-sumo-demo-webserver"
+                }
+            ]
+        }
+    ],
+    "MetadataOptions": {
+        "HttpTokens": "required",
+        "HttpPutResponseHopLimit": 2,
+        "HttpEndpoint": "enabled",
+        "HttpProtocolIpv6": "enabled",
+        "InstanceMetadataTags": "enabled"
+    },
+    "PrivateDnsNameOptions": {
+        "EnableResourceNameDnsARecord": false
+    }
+}

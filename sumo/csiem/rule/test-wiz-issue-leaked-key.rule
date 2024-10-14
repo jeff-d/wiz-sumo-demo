@@ -1,0 +1,7 @@
+metadata_vendor="Wiz"
+AND (threat_name = 'wc-id-1135' OR threat_name = 'ef843ec6-602f-463a-928b-550bb32d7053')
+
+// AND threat_identifier = '(wc-id-1185|wc-id-1135)'
+
+metadata_vendor="Wiz"
+AND threat_name IN ('wc-id-2022', 'wc-id-1135', 'ef843ec6-602f-463a-928b-550bb32d7053')

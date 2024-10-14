@@ -1,0 +1,11 @@
+{
+    "detail-type": "AWS API Call via CloudTrail",
+    "detail": {
+        "userAgent": "Boto3/1.26.48 Python/3.8.17 Linux/6.2.0-1017-aws Botocore/1.29.48",
+        "eventName": "DeleteAccessKey",
+        "requestParameters": {
+            "userName": "Intern",
+            "AccessKeyId": "fakeaccesskeyid"
+        }
+    }
+}

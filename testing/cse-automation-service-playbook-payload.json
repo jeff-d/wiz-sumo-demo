@@ -1,0 +1,56 @@
+"payload": {
+    "id": "76831be5-0d15-4197-bccd-b64eb6999272""name": "Unspecified Malicious Activity""tags": []
+    "orgId": "0000000000BC413C""closed":NULL
+    "entity": {
+        "id": "cloudinstance-i--0888bb52440d41284""name": "i-0888bb52440d41284""value": "i-0888bb52440d41284""hostname":NULL
+    "entityType": "cloudinstance""macAddress":NULL
+    "sensorZone": ""
+    }
+    "source": "USER""status": {
+        "name": "new""displayName": "New"
+    }
+    "created": "2024-01-16T20:39:58.524549""signals": [
+        0: {
+            "id": "62d2eda2-70de-5925-9c7e-308b15f30190""name": "Wiz - Application endpoint with an unauthenticated API on a VM/serverless exposes secrets""tags": []
+    "stage": "Unknown/Other""entity": {...
+            }
+    "ruleId": "MATCH-U00002""created": "2024-01-16T20:10:00.747000""severity": 9
+    "artifacts": []
+    "timestamp": "2024-01-16T20:10:00.747000""contentType": "RULE""description": "This resource exposes an unauthenticated API to the public internet in HTTP, and its HTTP GET response contains secrets in cleartext. Publicly exposed resources are more easily accessible for an attacker than internal ones. Moreover, cleartext cloud keys pose a serious security risk, as they allow lateral movement within your environment. An attacker that sends an HTTP GET request to this application endpoint can compromise the secret.""recordCount": 1
+    "recordTypes": []
+    "recordSearchDetails":NULL
+        }
+    ]
+    "assignee":NULL
+    "closedBy":NULL
+    "severity": "LOW""timestamp": "2024-01-16T20:10:00.747000""assignedTo":NULL
+    "confidence":NULL
+    "readableId": "INSIGHT-7""resolution":NULL
+    "description": "This resource exposes an unauthenticated API to the public internet in HTTP, and its HTTP GET response contains secrets in cleartext. Publicly exposed resources are more easily accessible for an attacker than internal ones. Moreover, cleartext cloud keys pose a serious security risk, as they allow lateral movement within your environment. An attacker that sends an HTTP GET request to this application endpoint can compromise the secret.""lastUpdated": "2024-01-16T20:39:58.524540""lastUpdatedBy":NULL
+    "subResolution":NULL
+    "teamAssignedTo":NULL
+    "timeToResponse":NULL
+    "timeToDetection": 1797.777549
+    "involvedEntities": [
+        0: {
+            "id": "_hostname-quicklab--hp6f--linux--7rspmh""name": "quicklab-hp6f-linux-7rspmh""value": "quicklab-hp6f-linux-7rspmh""hostname": "quicklab-hp6f-linux-7rspmh""entityType": "_hostname""macAddress":NULL
+    "sensorZone":NULL
+        }
+    1: {
+            "id": "cloudinstance-i--0888bb52440d41284""name": "i-0888bb52440d41284""value": "i-0888bb52440d41284""hostname":NULL
+    "entityType": "cloudinstance""macAddress":NULL
+    "sensorZone":NULL
+        }
+    2: {
+            "id": "secretname-AKIAZ47RMXET3PKGIS7F""name": "AKIAZ47RMXET3PKGIS7F""value": "AKIAZ47RMXET3PKGIS7F""hostname":NULL
+    "entityType": "secretname""macAddress":NULL
+    "sensorZone":NULL
+        }
+    3: {
+            "id": "threatname-wc--id--1185""name": "wc-id-1185""value": "wc-id-1185""hostname":NULL
+    "entityType": "threatname""macAddress":NULL
+    "sensorZone":NULL
+        }
+    ]
+    "timeToRemediation":NULL
+}

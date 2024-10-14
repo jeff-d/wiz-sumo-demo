@@ -1,0 +1,65 @@
+POST to https: //api.sumologic.com/api/sec/v1/log-mappings
+{
+    "fields": {
+        "name": "string",
+        "parentId": "string",
+        "fields": [
+            {
+                "name": "string",
+                "value": "string",
+                "valueType": "string",
+                "skippedValues": [
+                    "string"
+                ],
+                "lookup": [
+                    {
+                        "key": "string",
+                        "value": "string"
+                    }
+                ],
+                "defaultValue": "string",
+                "format": "string",
+                "caseInsensitive": true,
+                "alternateValues": [
+                    "string"
+                ],
+                "timeZone": "string",
+                "splitDelimiter": "string",
+                "splitIndex": "string",
+                "fieldJoin": [
+                    "string"
+                ],
+                "joinDelimiter": "string",
+                "formatParameters": [
+                    "string"
+                ]
+            }
+        ],
+        "skippedValues": [
+            "string"
+        ],
+        "unstructuredFields": {
+            "patternNames": [
+                "string"
+            ]
+        },
+        "structuredFields": {
+            "logFormat": "string",
+            "vendor": "string",
+            "product": "string",
+            "eventIdPattern": "string"
+        },
+        "structuredInputs": [
+            {
+                "logFormat": "string",
+                "vendor": "string",
+                "product": "string",
+                "eventIdPattern": "string"
+            }
+        ],
+        "recordType": "string",
+        "productGuid": "string",
+        "relatesEntities": true,
+        "enabled": true
+    }
+}

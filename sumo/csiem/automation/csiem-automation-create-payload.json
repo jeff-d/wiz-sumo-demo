@@ -1,0 +1,14 @@
+POST to https: //api.sumologic.com/api/sec/v1/automations
+{
+    "fields": {
+        "playbookId": "string",
+        "cseResourceType": "string",
+        "cseResourceSubTypes": [
+            "string"
+        ],
+        "executionTypes": [
+            "string"
+        ],
+        "enabled": true
+    }
+}

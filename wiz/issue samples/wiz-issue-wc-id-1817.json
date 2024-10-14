@@ -1,0 +1,50 @@
+{
+    "trigger": {
+        "source": "ISSUE",
+        "type": "Created",
+        "ruleId": "594c3f76-7818-4697-a2ee-a38e9c8f7d6d",
+        "ruleName": "brad-dausses-sumo-testing",
+        "updatedFields": " status field was changed from null to OPEN,  severity field was changed from null to LOW, ",
+        "changedBy": "Wiz"
+    },
+    "issue": {
+        "id": "5736e4c9-9aaf-4d9c-8082-3226f402ded3",
+        "status": "OPEN",
+        "severity": "LOW",
+        "created": "2024-01-23T01:20:24.739303Z",
+        "projects": "WizSumoEvent, ",
+        "evidence": [
+            [
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-07a47c40fe602e588",
+                    "name": "quicklab-hp6f-linux-8jf0pt"
+                }
+            ],
+            [
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-07a47c40fe602e588",
+                    "name": "quicklab-hp6f-linux-8jf0pt"
+                }
+            ]
+        ]
+    },
+    "resource": {
+        "id": "arn:aws:ec2:us-west-1:680721692967:instance/i-07a47c40fe602e588",
+        "name": "quicklab-hp6f-linux-8jf0pt",
+        "type": "virtualMachine",
+        "cloudPlatform": "AWS",
+        "subscriptionId": "680721692967",
+        "subscriptionName": "jdsumo",
+        "region": "us-west-1",
+        "status": "Active",
+        "cloudProviderURL": "https://us-west-1.console.aws.amazon.com/ec2/v2/home?region=us-west-1#InstanceDetails:instanceId=i-07a47c40fe602e588"
+    },
+    "control": {
+        "id": "wc-id-1817",
+        "name": "AWS VM without endpoint protection",
+        "description": "This VM does not run software categorized as endpoint protection.\n\nVMs without endpoint protection solution are not properly monitored, making them exposed to attacks.",
+        "severity": "LOW"
+    }
+}

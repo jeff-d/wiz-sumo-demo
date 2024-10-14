@@ -1,0 +1,76 @@
+{
+    "trigger": {
+        "source": "ISSUE",
+        "type": "Created",
+        "ruleId": "594c3f76-7818-4697-a2ee-a38e9c8f7d6d",
+        "ruleName": "brad-dausses-sumo-testing",
+        "updatedFields": " severity field was changed from null to LOW,  status field was changed from null to OPEN, ",
+        "changedBy": "Wiz"
+    },
+    "issue": {
+        "id": "483ca511-bbe1-4b33-82a2-d12a264a21bc",
+        "status": "OPEN",
+        "severity": "LOW",
+        "created": "2024-01-21T11:01:38.396363Z",
+        "projects": "WizSumoEvent, ",
+        "evidence": [
+            [
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-035cf592ba33943d1",
+                    "name": "quicklab-hp6f-bastion"
+                },
+                {
+                    "EvidenceObjectType": "SECRET_INSTANCE",
+                    "lastModified": "2024-01-20T06:19:15Z",
+                    "lineNumber": 1,
+                    "name": "Private Key",
+                    "path": "/home/ec2-user/quicklab-hp6f.pem",
+                    "snippet": "(encoded key/certificate data)"
+                },
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-0b354a51ae2a3a6f5",
+                    "name": "sumo-automation-bridge"
+                }
+            ],
+            [
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-035cf592ba33943d1",
+                    "name": "quicklab-hp6f-bastion"
+                },
+                {
+                    "EvidenceObjectType": "SECRET_INSTANCE",
+                    "lastModified": "2024-01-20T06:19:15Z",
+                    "lineNumber": 1,
+                    "name": "Private Key",
+                    "path": "/home/ec2-user/quicklab-hp6f.pem",
+                    "snippet": "(encoded key/certificate data)"
+                },
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-0b354a51ae2a3a6f5",
+                    "name": "sumo-automation-bridge"
+                }
+            ]
+        ]
+    },
+    "resource": {
+        "id": "arn:aws:ec2:us-west-1:680721692967:instance/i-035cf592ba33943d1",
+        "name": "quicklab-hp6f-bastion",
+        "type": "virtualMachine",
+        "cloudPlatform": "AWS",
+        "subscriptionId": "680721692967",
+        "subscriptionName": "jdsumo",
+        "region": "us-west-1",
+        "status": "Active",
+        "cloudProviderURL": "https://us-west-1.console.aws.amazon.com/ec2/v2/home?region=us-west-1#InstanceDetails:instanceId=i-035cf592ba33943d1"
+    },
+    "control": {
+        "id": "wc-id-343",
+        "name": "VM/serverless with cleartext SSH private keys that can be used to access other resources",
+        "description": "This VM/serverless contains SSH private keys in cleartext. The matching public key was found on other resources in the environment, meaning that the cleartext private key could be used for lateral movement and privilege escalation.\n\nCleartext SSH private keys pose a serious security risk, as they allow lateral movement within your environment. Moreover, Highly privileged resources are a greater risk to the environment when compromised. Therefore, an attacker that compromises the resource can use the private keys for lateral movement to the resources holding the matching public keys.",
+        "severity": "LOW"
+    }
+}

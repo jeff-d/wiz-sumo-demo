@@ -1,0 +1,43 @@
+  {
+    "IamInstanceProfile": {
+        "Arn": "%profile%"
+    },
+    "NetworkInterfaces": [
+        {
+            "DeleteOnTermination": true,
+            "DeviceIndex": 0,
+            "Groups": [
+                "%sgback%",
+                "%ssh%"
+            ]
+        }
+    ],
+    "ImageId": "resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+    "InstanceType": "t3.micro",
+    "KeyName": "%key%",
+    "UserData": "%userdata%",
+    "TagSpecifications": [
+        {
+            "ResourceType": "instance",
+            "Tags": [
+                {
+                    "Key": "Project",
+                    "Value": "%project%"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "%prefix%-%lab_id%-%app_name%-webserver"
+                }
+            ]
+        }
+    ],
+    "MetadataOptions": {
+        "HttpTokens": "required",
+        "HttpPutResponseHopLimit": 2,
+        "HttpEndpoint": "enabled",
+        "InstanceMetadataTags": "enabled"
+    },
+    "PrivateDnsNameOptions": {
+        "EnableResourceNameDnsARecord": false
+    }
+  }

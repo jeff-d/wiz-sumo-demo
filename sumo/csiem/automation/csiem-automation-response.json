@@ -1,0 +1,15 @@
+{
+    "data": {
+        "id": "9313e883-c9b0-40c5-b5a6-a0605533d34d",
+        "playbookId": "65a851beacc76395b498b919",
+        "name": "wiz-demo-containment",
+        "description": "",
+        "cseResourceType": "INSIGHT",
+        "cseResourceSubTypes": [],
+        "executionTypes": [
+            "ON_DEMAND"
+        ],
+        "enabled": true
+    },
+    "errors": []
+}

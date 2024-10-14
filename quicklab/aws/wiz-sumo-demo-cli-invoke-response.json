@@ -1,0 +1,1 @@
+"{\"scriptname\": \"wiz-sumo-demo-scenario1\", \"event\": \"DeleteAccessKey\", \"actions_taken\": [\"create_access_key\", \"put_secret_value\"]}"

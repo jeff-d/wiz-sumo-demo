@@ -1,0 +1,25 @@
+"data": {
+    "fields": [
+        {
+            "name": "user_username",
+            "value": "userIdentity.userName",
+            "alternateValues": [
+                "requestParameters.sourceIdentity",
+                "userIdentity.sessionContext.sourceIdentity",
+                "userIdentity.onBehalfOf.identityStoreArn",
+                "userIdentity.sessionContext.sessionIssuer.userName",
+                "userIdentity.sessionContext.sessionIssuer.arn",
+                "userIdentity.arn",
+                "userIdentity.principalId"
+            ],
+        },
+        {
+            "name": "user_role",
+            "value": "userIdentity.sessionContext.sessionIssuer.userName",
+            "alternateValues": [
+                "userIdentity.sessionContext.sessionIssuer.arn",
+                "userIdentity.sessionContext.sessionIssuer.principalId",
+            ],
+        }
+    ]
+}

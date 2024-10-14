@@ -1,0 +1,60 @@
+integration: AWS IAM (2)
+name: Get Access Key Last Used
+type: Enrichment
+script:
+  code: |
+    from botocore import config
+    import json
+    import os
+    import sys
+    import boto3
+    import argparse
+    import sys
+    import datetime
+
+    class EnvDefault(argparse.Action):
+        def __init__(self, required=True, default=None, **kwargs):
+            envvar = kwargs.get("dest")
+            default = os.environ.get(envvar, default) if envvar in os.environ else default
+            required = False if required and default else required
+            super(EnvDefault, self).__init__(default=default, required=required, **kwargs)
+
+        def __call__(self, parser, namespace, values, option_string=None):
+            setattr(namespace, self.dest, values)
+
+    try:
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--accesskey', help='accesskey , REQUIRED', required=True, action=EnvDefault)
+        parser.add_argument('--secretkey', help='secretkey , REQUIRED', required=True, action=EnvDefault)
+        parser.add_argument('--region', help='region , REQUIRED', required=True, action=EnvDefault)
+        parser.add_argument('--accesskeyid', help='username , REQUIRED', required=True, action=EnvDefault)
+        parser.add_argument('--proxy_url', help='Proxy URL', required=False, action=EnvDefault)
+        args, unknown = parser.parse_known_args()
+        proxies = {'http': args.proxy_url, 'https': args.proxy_url} if args.proxy_url is not None else None
+        proxy = config.Config(proxies=proxies)
+        client = boto3.client('iam', config=proxy, region_name=args.region,aws_access_key_id=args.accesskey,
+            aws_secret_access_key=args.secretkey)
+        params ={}
+        response = client.get_access_key_last_used(
+        AccessKeyId = args.accesskeyid,
+        **params
+        )
+        print(json.dumps(response , default =str))
+        exit(0)
+    except Exception as e:
+        sys.stderr.write(str(e))
+        exit(-1)
+fields:
+- id: accesskeyid
+  type: text
+  label: Accesskey Id
+  required: true
+output:
+- path: UserName
+  type: text
+- path: AccessKeyLastUsed.LastUsedDate
+  type: text
+- path: AccessKeyLastUsed.ServiceName
+  type: text
+- path: AccessKeyLastUsed.Region
+  type: text

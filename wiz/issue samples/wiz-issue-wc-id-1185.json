@@ -1,0 +1,55 @@
+{
+    "trigger": {
+        "source": "ISSUE",
+        "type": "",
+        "ruleId": "",
+        "ruleName": "Manual",
+        "updatedFields": "",
+        "changedBy": ""
+    },
+    "issue": {
+        "id": "1d4fe952-6fc1-4483-b866-423d66eb8af1",
+        "status": "OPEN",
+        "severity": "CRITICAL",
+        "created": "2024-01-17T14:04:00.747849Z",
+        "projects": "WizSumoEvent, ",
+        "evidence": [
+            [
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-00674acaa6110b5ab",
+                    "name": "quicklab-hp6f-linux-7rspmh"
+                },
+                {
+                    "EvidenceObjectType": "ENDPOINT",
+                    "externalId": "http://ec2-34-215-221-195.us-west-2.compute.amazonaws.com:80/",
+                    "name": "http://ec2-34-215-221-195.us-west-2.compute.amazonaws.com:80"
+                },
+                {
+                    "EvidenceObjectType": "SECRET_INSTANCE",
+                    "lineNumber": 3,
+                    "name": "AWS Secret Key (AccessKeyId=AKIAZ47RMXET7GXTXK4O)",
+                    "path": "http://ec2-34-215-221-195.us-west-2.compute.amazonaws.com:80",
+                    "snippet": "\\\"AKIAZ47RMXET7GXTXK4O\\\",\\\\n  \\\"aws_secret_access_key\\\": \\\"---REDACTED---\\\","
+                }
+            ]
+        ]
+    },
+    "resource": {
+        "id": "arn:aws:ec2:us-west-2:680721692967:instance/i-00674acaa6110b5ab",
+        "name": "quicklab-hp6f-linux-7rspmh",
+        "type": "virtualMachine",
+        "cloudPlatform": "AWS",
+        "subscriptionId": "680721692967",
+        "subscriptionName": "jdsumo",
+        "region": "us-west-2",
+        "status": "Active",
+        "cloudProviderURL": "https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#InstanceDetails:instanceId=i-03400b91140af947b"
+    },
+    "control": {
+        "id": "wc-id-1185",
+        "name": "Application endpoint with an unauthenticated API on a VM/serverless exposes secrets",
+        "description": "This resource exposes an unauthenticated API to the public internet in HTTP, and its HTTP GET response contains secrets in cleartext. \n\nPublicly exposed resources are more easily accessible for an attacker than internal ones. Moreover, cleartext cloud keys pose a serious security risk, as they allow lateral movement within your environment. An attacker that sends an HTTP GET request to this application endpoint can compromise the secret. ",
+        "severity": ""
+    }
+}

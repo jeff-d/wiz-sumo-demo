@@ -1,0 +1,268 @@
+{
+    "trigger": {
+        "source": "ISSUE",
+        "type": "Created",
+        "ruleId": "594c3f76-7818-4697-a2ee-a38e9c8f7d6d",
+        "ruleName": "jd-testing-asg",
+        "updatedFields": "resolutionReason field was changed from null to null,  status field was changed from null to OPEN, ",
+        "changedBy": "Wiz"
+    },
+    "issue": {
+        "id": "76976983-3571-4bbb-ae9f-fc6ec97500ef",
+        "status": "OPEN",
+        "severity": "CRITICAL",
+        "created": "2024-05-07T06:37:00.888935Z",
+        "projects": "WizSumoEvent, ",
+        "evidence": [
+            [
+                {
+                    "EvidenceObjectType": "COMPUTE_INSTANCE_GROUP",
+                    "externalId": "arn:aws:autoscaling:us-west-1:680721692967:autoScalingGroup:2afa6304-a3a6-4f86-b855-d6c0e3b53f58:autoScalingGroupName/wiz-sumo-demo-asg",
+                    "name": "wiz-sumo-demo-asg"
+                },
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-0118fe7c685c0512f",
+                    "name": "quicklab-ri1g-wiz-sumo-demo-webserver"
+                },
+                {
+                    "EvidenceObjectType": "ENDPOINT",
+                    "externalId": "http://52.9.80.45:80/",
+                    "name": "http://52.9.80.45:80"
+                },
+                {
+                    "EvidenceObjectType": "SECRET_INSTANCE",
+                    "lineNumber": 10,
+                    "name": "AWS Secret Key (AccessKeyId=AKIAZ47RMXET7PFAWZZC)",
+                    "path": "http://52.9.80.45:80",
+                    "snippet": "\\\"AKIAZ47RMXET7PFAWZZC\\\",\\\\n    \\\"aws_secret_access_key\\\": \\\"---REDACTED---\\\""
+                },
+                {
+                    "EvidenceObjectType": "USER_ACCOUNT",
+                    "externalId": "arn:aws:iam::680721692967:user/Intern",
+                    "name": "Intern"
+                }
+            ],
+            [
+                {
+                    "EvidenceObjectType": "COMPUTE_INSTANCE_GROUP",
+                    "externalId": "arn:aws:autoscaling:us-west-1:680721692967:autoScalingGroup:2afa6304-a3a6-4f86-b855-d6c0e3b53f58:autoScalingGroupName/wiz-sumo-demo-asg",
+                    "name": "wiz-sumo-demo-asg"
+                },
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-0118fe7c685c0512f",
+                    "name": "quicklab-ri1g-wiz-sumo-demo-webserver"
+                },
+                {
+                    "EvidenceObjectType": "ENDPOINT",
+                    "externalId": "http://ec2-52-9-80-45.us-east-2.compute.amazonaws.com:80/",
+                    "name": "http://ec2-52-9-80-45.us-east-2.compute.amazonaws.com:80"
+                },
+                {
+                    "EvidenceObjectType": "SECRET_INSTANCE",
+                    "lineNumber": 10,
+                    "name": "AWS Secret Key (AccessKeyId=AKIAZ47RMXET7PFAWZZC)",
+                    "path": "http://ec2-52-9-80-45.us-east-2.compute.amazonaws.com:80",
+                    "snippet": "\\\"AKIAZ47RMXET7PFAWZZC\\\",\\\\n    \\\"aws_secret_access_key\\\": \\\"---REDACTED---\\\""
+                },
+                {
+                    "EvidenceObjectType": "USER_ACCOUNT",
+                    "externalId": "arn:aws:iam::680721692967:user/Intern",
+                    "name": "Intern"
+                }
+            ],
+            [
+                {
+                    "EvidenceObjectType": "COMPUTE_INSTANCE_GROUP",
+                    "externalId": "arn:aws:autoscaling:us-west-1:680721692967:autoScalingGroup:2afa6304-a3a6-4f86-b855-d6c0e3b53f58:autoScalingGroupName/wiz-sumo-demo-asg",
+                    "name": "wiz-sumo-demo-asg"
+                },
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-0118fe7c685c0512f",
+                    "name": "quicklab-ri1g-wiz-sumo-demo-webserver"
+                },
+                {
+                    "EvidenceObjectType": "ENDPOINT",
+                    "externalId": "http://ec2-54-219-21-96.us-east-2.compute.amazonaws.com:80/",
+                    "name": "http://ec2-54-219-21-96.us-east-2.compute.amazonaws.com:80"
+                },
+                {
+                    "EvidenceObjectType": "SECRET_INSTANCE",
+                    "lineNumber": 10,
+                    "name": "AWS Secret Key (AccessKeyId=AKIAZ47RMXETUUM4XDMX)",
+                    "path": "http://ec2-54-219-21-96.us-east-2.compute.amazonaws.com:80",
+                    "snippet": "\\\"AKIAZ47RMXETUUM4XDMX\\\",\\\\n    \\\"aws_secret_access_key\\\": \\\"---REDACTED---\\\""
+                },
+                {
+                    "EvidenceObjectType": "USER_ACCOUNT",
+                    "externalId": "arn:aws:iam::680721692967:user/Intern",
+                    "name": "Intern"
+                }
+            ],
+            [
+                {
+                    "EvidenceObjectType": "COMPUTE_INSTANCE_GROUP",
+                    "externalId": "arn:aws:autoscaling:us-west-1:680721692967:autoScalingGroup:2afa6304-a3a6-4f86-b855-d6c0e3b53f58:autoScalingGroupName/wiz-sumo-demo-asg",
+                    "name": "wiz-sumo-demo-asg"
+                },
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-0118fe7c685c0512f",
+                    "name": "quicklab-ri1g-wiz-sumo-demo-webserver"
+                },
+                {
+                    "EvidenceObjectType": "ENDPOINT",
+                    "externalId": "http://54.219.21.96:80/",
+                    "name": "http://54.219.21.96:80"
+                },
+                {
+                    "EvidenceObjectType": "SECRET_INSTANCE",
+                    "lineNumber": 10,
+                    "name": "AWS Secret Key (AccessKeyId=AKIAZ47RMXET7PFAWZZC)",
+                    "path": "http://54.219.21.96:80",
+                    "snippet": "\\\"AKIAZ47RMXET7PFAWZZC\\\",\\\\n    \\\"aws_secret_access_key\\\": \\\"---REDACTED---\\\""
+                },
+                {
+                    "EvidenceObjectType": "USER_ACCOUNT",
+                    "externalId": "arn:aws:iam::680721692967:user/Intern",
+                    "name": "Intern"
+                }
+            ],
+            [
+                {
+                    "EvidenceObjectType": "COMPUTE_INSTANCE_GROUP",
+                    "externalId": "arn:aws:autoscaling:us-west-1:680721692967:autoScalingGroup:2afa6304-a3a6-4f86-b855-d6c0e3b53f58:autoScalingGroupName/wiz-sumo-demo-asg",
+                    "name": "wiz-sumo-demo-asg"
+                },
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-0118fe7c685c0512f",
+                    "name": "quicklab-ri1g-wiz-sumo-demo-webserver"
+                },
+                {
+                    "EvidenceObjectType": "ENDPOINT",
+                    "externalId": "http://52.9.80.45:80/",
+                    "name": "http://52.9.80.45:80"
+                },
+                {
+                    "EvidenceObjectType": "SECRET_INSTANCE",
+                    "lineNumber": 10,
+                    "name": "AWS Secret Key (AccessKeyId=AKIAZ47RMXET7PFAWZZC)",
+                    "path": "http://52.9.80.45:80",
+                    "snippet": "\\\"AKIAZ47RMXET7PFAWZZC\\\",\\\\n    \\\"aws_secret_access_key\\\": \\\"---REDACTED---\\\""
+                },
+                {
+                    "EvidenceObjectType": "USER_ACCOUNT",
+                    "externalId": "arn:aws:iam::680721692967:user/Intern",
+                    "name": "Intern"
+                }
+            ],
+            [
+                {
+                    "EvidenceObjectType": "COMPUTE_INSTANCE_GROUP",
+                    "externalId": "arn:aws:autoscaling:us-west-1:680721692967:autoScalingGroup:2afa6304-a3a6-4f86-b855-d6c0e3b53f58:autoScalingGroupName/wiz-sumo-demo-asg",
+                    "name": "wiz-sumo-demo-asg"
+                },
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-0118fe7c685c0512f",
+                    "name": "quicklab-ri1g-wiz-sumo-demo-webserver"
+                },
+                {
+                    "EvidenceObjectType": "ENDPOINT",
+                    "externalId": "http://ec2-52-9-80-45.us-east-2.compute.amazonaws.com:80/",
+                    "name": "http://ec2-52-9-80-45.us-east-2.compute.amazonaws.com:80"
+                },
+                {
+                    "EvidenceObjectType": "SECRET_INSTANCE",
+                    "lineNumber": 10,
+                    "name": "AWS Secret Key (AccessKeyId=AKIAZ47RMXET7PFAWZZC)",
+                    "path": "http://ec2-52-9-80-45.us-east-2.compute.amazonaws.com:80",
+                    "snippet": "\\\"AKIAZ47RMXET7PFAWZZC\\\",\\\\n    \\\"aws_secret_access_key\\\": \\\"---REDACTED---\\\""
+                },
+                {
+                    "EvidenceObjectType": "USER_ACCOUNT",
+                    "externalId": "arn:aws:iam::680721692967:user/Intern",
+                    "name": "Intern"
+                }
+            ],
+            [
+                {
+                    "EvidenceObjectType": "COMPUTE_INSTANCE_GROUP",
+                    "externalId": "arn:aws:autoscaling:us-west-1:680721692967:autoScalingGroup:2afa6304-a3a6-4f86-b855-d6c0e3b53f58:autoScalingGroupName/wiz-sumo-demo-asg",
+                    "name": "wiz-sumo-demo-asg"
+                },
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-0118fe7c685c0512f",
+                    "name": "quicklab-ri1g-wiz-sumo-demo-webserver"
+                },
+                {
+                    "EvidenceObjectType": "ENDPOINT",
+                    "externalId": "http://ec2-54-219-21-96.us-east-2.compute.amazonaws.com:80/",
+                    "name": "http://ec2-54-219-21-96.us-east-2.compute.amazonaws.com:80"
+                },
+                {
+                    "EvidenceObjectType": "SECRET_INSTANCE",
+                    "lineNumber": 10,
+                    "name": "AWS Secret Key (AccessKeyId=AKIAZ47RMXETUUM4XDMX)",
+                    "path": "http://ec2-54-219-21-96.us-east-2.compute.amazonaws.com:80",
+                    "snippet": "\\\"AKIAZ47RMXETUUM4XDMX\\\",\\\\n    \\\"aws_secret_access_key\\\": \\\"---REDACTED---\\\""
+                },
+                {
+                    "EvidenceObjectType": "USER_ACCOUNT",
+                    "externalId": "arn:aws:iam::680721692967:user/Intern",
+                    "name": "Intern"
+                }
+            ],
+            [
+                {
+                    "EvidenceObjectType": "COMPUTE_INSTANCE_GROUP",
+                    "externalId": "arn:aws:autoscaling:us-west-1:680721692967:autoScalingGroup:2afa6304-a3a6-4f86-b855-d6c0e3b53f58:autoScalingGroupName/wiz-sumo-demo-asg",
+                    "name": "wiz-sumo-demo-asg"
+                },
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-0118fe7c685c0512f",
+                    "name": "quicklab-ri1g-wiz-sumo-demo-webserver"
+                },
+                {
+                    "EvidenceObjectType": "ENDPOINT",
+                    "externalId": "http://54.219.21.96:80/",
+                    "name": "http://54.219.21.96:80"
+                },
+                {
+                    "EvidenceObjectType": "SECRET_INSTANCE",
+                    "lineNumber": 10,
+                    "name": "AWS Secret Key (AccessKeyId=AKIAZ47RMXET7PFAWZZC)",
+                    "path": "http://54.219.21.96:80",
+                    "snippet": "\\\"AKIAZ47RMXET7PFAWZZC\\\",\\\\n    \\\"aws_secret_access_key\\\": \\\"---REDACTED---\\\""
+                },
+                {
+                    "EvidenceObjectType": "USER_ACCOUNT",
+                    "externalId": "arn:aws:iam::680721692967:user/Intern",
+                    "name": "Intern"
+                }
+            ]
+        ]
+    },
+    "resource": {
+        "id": "arn:aws:autoscaling:us-west-1:680721692967:autoScalingGroup:2afa6304-a3a6-4f86-b855-d6c0e3b53f58:autoScalingGroupName/wiz-sumo-demo-asg",
+        "name": "wiz-sumo-demo-asg",
+        "type": "autoScalingGroup",
+        "cloudPlatform": "AWS",
+        "subscriptionId": "680721692967",
+        "subscriptionName": "jdsumo",
+        "region": "us-east-2",
+        "status": "",
+        "cloudProviderURL": "https://us-east-2.console.aws.amazon.com/ec2/home?region=us-east-2#AutoScalingGroupDetails:id=wiz-sumo-demo-asg;view=details"
+    },
+    "control": {
+        "id": "wc-id-1135",
+        "name": "Application endpoint on a VM/serverless exposes cleartext cloud keys",
+        "description": "This resource is exposed to the public Internet in HTTP, and its HTTP GET response contains cloud keys in cleartext that permit a service account/user account. \n\nPublicly exposed resources are more easily accessible for an attacker than Internal ones. Moreover, cleartext cloud keys pose a serious security risk, as they allow lateral movement within your environment. An attacker that sends an HTTP GET request to this application endpoint can watch the cloud keys in cleartext and will be able to use them to compromise the account. ",
+        "severity": "CRITICAL"
+    }
+}

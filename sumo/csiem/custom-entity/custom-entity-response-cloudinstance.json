@@ -1,0 +1,13 @@
+{
+    "data": {
+        "id": "5",
+        "identifier": "cloudinstance",
+        "name": "Cloud Instance",
+        "fields": [
+            "dstDevice_uniqueId",
+            "srcDevice_uniqueId",
+            "device_uniqueId"
+        ]
+    },
+    "errors": []
+}

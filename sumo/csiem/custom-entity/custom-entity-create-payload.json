@@ -1,0 +1,10 @@
+POST to https: //api.sumologic.com/api/sec/v1/custom-entity-types
+{
+    "fields": {
+        "name": "string",
+        "fields": [
+            "string"
+        ],
+        "identifier": "string"
+    }
+}

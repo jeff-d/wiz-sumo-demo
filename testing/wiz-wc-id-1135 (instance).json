@@ -1,0 +1,60 @@
+{
+    "trigger": {
+        "source": "ISSUE",
+        "type": "Created",
+        "ruleId": "594c3f76-7818-4697-a2ee-a38e9c8f7d6d",
+        "ruleName": "jd-testing-instance",
+        "updatedFields": " severity field was changed from null to CRITICAL,  status field was changed from null to OPEN, ",
+        "changedBy": "Wiz"
+    },
+    "issue": {
+        "id": "f0eca637-f1a7-4c1a-8c89-cc88714a4a7f",
+        "status": "OPEN",
+        "severity": "CRITICAL",
+        "created": "2024-05-06T16:27:00.888935Z",
+        "projects": "WizSumoEvent, ",
+        "evidence": [
+            [
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-060fc57c12d7bead8",
+                    "name": "quicklab-ak0y-wiz-qa-webserver"
+                },
+                {
+                    "EvidenceObjectType": "ENDPOINT",
+                    "externalId": "http://18.144.154.126:80/",
+                    "name": "http://18.144.154.126:80"
+                },
+                {
+                    "EvidenceObjectType": "SECRET_INSTANCE",
+                    "lineNumber": 10,
+                    "name": "AWS Secret Key (AccessKeyId=AKIAZ47RMXET45MEEDHX)",
+                    "path": "http://18.144.154.126:80",
+                    "snippet": "\\\"AKIAZ47RMXET45MEEDHX\\\",\\\\n    \\\"aws_secret_access_key\\\": \\\"---REDACTED---\\\""
+                },
+                {
+                    "EvidenceObjectType": "USER_ACCOUNT",
+                    "externalId": "arn:aws:iam::680721692967:user/QAIntern",
+                    "name": "QAIntern"
+                }
+            ]
+        ]
+    },
+    "resource": {
+        "id": "arn:aws:ec2:us-west-1:680721692967:instance/i-060fc57c12d7bead8",
+        "name": "quicklab-ak0y-wiz-qa-webserver",
+        "type": "virtualMachine",
+        "cloudPlatform": "AWS",
+        "subscriptionId": "680721692967",
+        "subscriptionName": "jdsumo",
+        "region": "us-west-1",
+        "status": "Active",
+        "cloudProviderURL": "https://us-west-1.console.aws.amazon.com/ec2/v2/home?region=us-west-1#InstanceDetails:instanceId=i-060fc57c12d7bead8"
+    },
+    "control": {
+        "id": "wc-id-1135",
+        "name": "Application endpoint on a VM/serverless exposes cleartext cloud keys",
+        "description": "This resource is exposed to the public QAInternet in HTTP, and its HTTP GET response contains cloud keys in cleartext that permit a service account/user account. \n\nPublicly exposed resources are more easily accessible for an attacker than QAInternal ones. Moreover, cleartext cloud keys pose a serious security risk, as they allow lateral movement within your environment. An attacker that sends an HTTP GET request to this application endpoint can watch the cloud keys in cleartext and will be able to use them to compromise the account. ",
+        "severity": "CRITICAL"
+    }
+}

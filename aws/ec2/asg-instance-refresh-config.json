@@ -1,0 +1,17 @@
+{
+    "AutoScalingGroupName": "wiz-sumo-demo-asg",
+    "Preferences": {
+        "InstanceWarmup": 0,
+        "MinHealthyPercentage": 100,
+        "MaxHealthyPercentage": 100,
+        "CheckpointPercentages": [
+            50,
+            100
+        ],
+        "CheckpointDelay": 600,
+        "AutoRollback": false,
+        "SkipMatching": false,
+        "ScaleInProtectedInstances": "Ignore",
+        "StandbyInstances": "Ignore"
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "LaunchTemplateVersions": [
+        {
+            "LaunchTemplateId": "lt-0905dfe790461861d",
+            "LaunchTemplateName": "wiz-qa-al2023-apache",
+            "VersionNumber": 1,
+            "VersionDescription": "10: 20: 11 PM: installs & enables apache",
+            "CreateTime": "datetime.datetime(2024, 5,5,2,20,13, tzinfo=tzlocal())",
+            "CreatedBy": "arn:aws:iam: : 680721692967:user/jdeininger",
+            "DefaultVersion": true,
+            "LaunchTemplateData": {
+                "IamInstanceProfile": {
+                    "Arn": "arn:aws:iam: : 680721692967:instance-profile/wiz-qa-instance-profile"
+                },
+                "NetworkInterfaces": [
+                    {
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Groups": [
+                            "sg-04a781c1fd9d77a3a",
+                            "sg-08444f72e4ef594f3"
+                        ]
+                    }
+                ],
+                "ImageId": "resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+                "InstanceType": "t3.micro",
+                "KeyName": "quicklab-ak0y",
+                "UserData": "IyEvYmluL2Jhc2gKc2V0IC12IC1lCiMgdGVzdGVkIHdpdGggQW1hem9uIExpbnV4IDIwMjMKCiMgZ2V0IGFkbWluIHByaXZpbGVnZXMKc3VkbyBzdQoKIyBkaXNhYmxlIHNzbSBhZ2VudApzeXN0ZW1jdGwgc3RvcCBhbWF6b24tc3NtLWFnZW50CnN5c3RlbWN0bCBkaXNhYmxlIGFtYXpvbi1zc20tYWdlbnQKCiMgaW5zdGFsbCBwYWNrYWdlcwpkbmYgdXBkYXRlIC15CmRuZiBpbnN0YWxsIC15IGpxCmpxIC0tdmVyc2lvbgpkbmYgaW5zdGFsbCAteSBodHRwZC54ODZfNjQKCiMgcG9wdWxhdGUgZGVmYXVsdCBwYWdlCmNhdCA+PiAvdmFyL3d3dy9odG1sL2luZGV4Lmh0bWwgPDwhCjx0aXRsZT5IZWxsbyBXb3JsZDwvdGl0bGU+CjxoMT5QdWJsaWMgQXBwPC9oMT4gCjxwPlRoaXMgcGFnZSBjb250ZW50IHdhcyBnZW5lcmF0ZWQgYnkgRUMyIHVzZXIgZGF0YTwvcD4KPHByZT4KewogICAgImhlbGxvIjogIndvcmxkIiwKICAgICJmcm9tIjogInF1aWNrbGFiLmlvIgp9CjwvcHJlPgo8YnI+Cjxocj4KPGJyPiAKJChob3N0bmFtZSAtZikKPGJyPgohCgojIGVuYWJsZSBhbmQgc3RhcnQgc2VydmljZQpzdWRvIHN5c3RlbWN0bCBlbmFibGUgaHR0cGQuc2VydmljZSAKc3VkbyBzeXN0ZW1jdGwgc3RhcnQgaHR0cGQuc2VydmljZQpzdWRvIHN5c3RlbWN0bCBzdGF0dXMgaHR0cGQuc2VydmljZQoKIyBnaXZlIGVjMi11c2VyIHBlcm1pc3Npb25zIHRvIG1vZGlmeSBhcGFjaGUKdXNlcm1vZCAtYSAtRyBhcGFjaGUgZWMyLXVzZXIKY2hvd24gLVIgZWMyLXVzZXI6YXBhY2hlIC92YXIvd3d3CmNobW9kIDI3NzUgL3Zhci93d3cKCiMgYWRkIGdyb3VwIHdyaXRlIHBlcm1pc3Npb25zIGFuZCB0byBzZXQgdGhlIGdyb3VwIElEIG9uIGZ1dHVyZSBzdWJkaXJlY3RvcmllcwpmaW5kIC92YXIvd3d3IC10eXBlIGQgLWV4ZWMgY2htb2QgMjc3NSB7fSBcOwpmaW5kIC92YXIvd3d3IC10eXBlIGYgLWV4ZWMgY2htb2QgMDY2NCB7fSBcOwoKIyBjcmVhdGUgb3V0cHV0IGxvZ3MKb3V0cHV0IDogeyBhbGwgOiAnfCB0ZWUgLWEgL3Zhci9sb2cvY2xvdWQtaW5pdC1vdXRwdXQubG9nJyB9Cg==",
+                "TagSpecifications": [
+                    {
+                        "ResourceType": "instance",
+                        "Tags": [
+                            {
+                                "Key": "Project",
+                                "Value": "wiz-qa"
+                            },
+                            {
+                                "Key": "Name",
+                                "Value": "quicklab-ak0y-wiz-qa-webserver"
+                            }
+                        ]
+                    }
+                ],
+                "MetadataOptions": {
+                    "HttpTokens": "required",
+                    "HttpPutResponseHopLimit": 2,
+                    "HttpEndpoint": "enabled",
+                    "InstanceMetadataTags": "enabled"
+                },
+                "PrivateDnsNameOptions": {
+                    "EnableResourceNameDnsARecord": false
+                }
+            }
+        }
+    ],
+    "ResponseMetadata": {
+        "RequestId": "5c3bd24e-6160-4192-af7f-d5919171b2b9",
+        "HTTPStatusCode": 200,
+        "HTTPHeaders": {
+            "x-amzn-requestid": "5c3bd24e-6160-4192-af7f-d5919171b2b9",
+            "cache-control": "no-cache, no-store",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "vary": "accept-encoding",
+            "content-type": "text/xml;charset=UTF-8",
+            "transfer-encoding": "chunked",
+            "date": "Sun,05 May 2024 18: 19: 53 GMT",
+            "server": "AmazonEC2"
+        },
+        "RetryAttempts": 0
+    }
+}

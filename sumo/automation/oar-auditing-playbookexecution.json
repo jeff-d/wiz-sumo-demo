@@ -1,0 +1,29 @@
+{
+    "accountId": "0000000000BC413C",
+    "eventId": "a2a50306-3fb0-402f-bce6-809d108ea019",
+    "subsystem": "oarPlaybookExecutions",
+    "eventName": "PlaybookExecutionUpdated",
+    "eventTime": "2024-02-15T18:48:48.912+00:00Z",
+    "eventFormatVersion": "1.0 beta",
+    "severityLevel": "Info",
+    "PlaybookExecutionIdentity": {
+        "playbook_id": "65ce5c7bb096dc684ea90fd2",
+        "playbook_name": "wiz-demo-containment",
+        "running_id": "65ce5c7bb096dc684ea90fd3"
+    },
+    "PlaybookExecution": {
+        "end": 1708022928.744155,
+        "playbook_id": "65ce5c7bb096dc684ea90fd2",
+        "playbook_name": "wiz-demo-containment",
+        "running_id": "65ce5c7bb096dc684ea90fd3",
+        "start": 1708022907.618448,
+        "status": "Completed (with errors)",
+        "type": "General"
+    },
+    "from": {
+        "status": "Running"
+    },
+    "to": {
+        "status": "Completed (with errors)"
+    }
+}

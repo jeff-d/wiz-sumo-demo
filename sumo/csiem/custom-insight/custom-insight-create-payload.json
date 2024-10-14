@@ -1,0 +1,25 @@
+POST to https: //api.sumologic.com/api/sec/v1/custom-insights
+{
+    "fields": {
+        "name": "string",
+        "description": "string",
+        "severity": "CRITICAL",
+        "ordered": true,
+        "enabled": true,
+        "tags": [
+            "string"
+        ],
+        "dynamicSeverity": [
+            {
+                "minimumSignalSeverity": 0,
+                "insightSeverity": "CRITICAL"
+            }
+        ],
+        "ruleIds": [
+            "string"
+        ],
+        "signalNames": [
+            "string"
+        ]
+    }
+}

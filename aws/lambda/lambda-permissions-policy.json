@@ -1,0 +1,58 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "iam",
+            "Effect": "Allow",
+            "Action": [
+                "iam:DeleteAccessKey",
+                "iam:GetAccessKeyLastUsed",
+                "iam:UpdateAccessKey",
+                "iam:CreateAccessKey",
+                "iam:ListAccessKeys",
+                "iam:PassRole"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "secretsmanager",
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:UntagResource",
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:DeleteResourcePolicy",
+                "secretsmanager:PutSecretValue",
+                "secretsmanager:CreateSecret",
+                "secretsmanager:DeleteSecret",
+                "secretsmanager:ListSecretVersionIds",
+                "secretsmanager:UpdateSecret",
+                "secretsmanager:GetResourcePolicy",
+                "secretsmanager:PutResourcePolicy",
+                "secretsmanager:UpdateSecretVersionStage",
+                "secretsmanager:ValidateResourcePolicy",
+                "secretsmanager:ListSecrets",
+                "secretsmanager:TagResource"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "ec2",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeSubnets",
+                "ec2:RunInstances",
+                "ec2:CreateTags",
+                "ec2:DescribeSecurityGroups"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "ssm",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParameters"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

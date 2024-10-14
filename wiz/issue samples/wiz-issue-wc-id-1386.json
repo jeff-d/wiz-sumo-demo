@@ -1,0 +1,48 @@
+{
+    "trigger": {
+        "source": "ISSUE",
+        "type": "Created",
+        "ruleId": "594c3f76-7818-4697-a2ee-a38e9c8f7d6d",
+        "ruleName": "brad-dausses-sumo-testing",
+        "updatedFields": " severity field was changed from null to INFORMATIONAL,  status field was changed from null to OPEN, ",
+        "changedBy": "Wiz"
+    },
+    "issue": {
+        "id": "dda837f2-9be0-40e2-958a-46b3947ecd3a",
+        "status": "OPEN",
+        "severity": "INFORMATIONAL",
+        "created": "2024-01-23T01:25:57.157335Z",
+        "projects": "WizSumoEvent, ",
+        "evidence": [
+            [
+                {
+                    "EvidenceObjectType": "VOLUME",
+                    "externalId": "vol-0548e269ad5a44bf4",
+                    "name": "arn:aws:ec2:us-west-1:680721692967:volume/vol-0548e269ad5a44bf4"
+                },
+                {
+                    "EvidenceObjectType": "VIRTUAL_MACHINE",
+                    "externalId": "i-0398578354f4d7a67",
+                    "name": "quicklab-hp6f-linux-zk4rpv"
+                }
+            ]
+        ]
+    },
+    "resource": {
+        "id": "arn:aws:ec2:us-west-1:680721692967:volume/vol-0548e269ad5a44bf4",
+        "name": "arn:aws:ec2:us-west-1:680721692967:volume/vol-0548e269ad5a44bf4",
+        "type": "volume",
+        "cloudPlatform": "AWS",
+        "subscriptionId": "680721692967",
+        "subscriptionName": "jdsumo",
+        "region": "us-west-1",
+        "status": "Active",
+        "cloudProviderURL": "https://us-west-1.console.aws.amazon.com/ec2/v2/home?region=us-west-1#Volumes:volumeId=vol-0548e269ad5a44bf4"
+    },
+    "control": {
+        "id": "wc-id-1386",
+        "name": "Volume attached to an inactive VM",
+        "description": "This volume is attached to a VM that is inactive. It is possible that this volume is not required for the environment to function properly.\n\nBy cutting cloud waste and controlling what you spend you can reduce cloud computing costs, and improved financial performance.",
+        "severity": "INFORMATIONAL"
+    }
+}

@@ -1,0 +1,362 @@
+{
+  "Parameters": {
+    "CloudTrailBucketName": {
+      "Type": "String",
+      "Description": "Enter the name of the S3 bucket the CloudTrail logs are written to",
+      "AllowedPattern": "^[a-z\\d][a-z\\d.-]{1,61}[a-z\\d]$"
+    },
+    "WizAccessRole": {
+      "Type": "String",
+      "Description": "Enter the WizAccessRole ARN",
+      "AllowedPattern": "^arn:aws(?:-(?:cn|us-gov))??:iam::\\d{12}:role/.+$"
+    },
+    "NotificationType": {
+      "Type": "String",
+      "Description": "Choose the notification type; either S3 Bucket notifications or CloudTrail SNS notifications",
+      "AllowedValues": [
+        "s3",
+        "cloudtrail"
+      ],
+      "Default": "s3"
+    },
+    "PreExistingTopicName": {
+      "Type": "String",
+      "Description": "Your existing SNS Topic name which gets notified when new cloudtrail objects are created in the logs bucket",
+      "AllowedPattern": "(?:^$)|(?:^[\\w_-]{1,256}$)",
+      "Default": ""
+    },
+    "CloudTrailARN": {
+      "Type": "String",
+      "Description": "The CloudTrail ARN if you chose the \"cloudtrail\" notification type",
+      "AllowedPattern": "(?:^$)|(?:^arn:aws(?:-(?:cn|us-gov))??:cloudtrail:(?:.+):\\d{12}:trail/(?:.+)$)",
+      "Default": ""
+    }
+  },
+  "Metadata": {
+    "AWS::CloudFormation::Interface": {
+      "ParameterGroups": [
+        {
+          "Label": {
+            "default": "Mandatory ETRA integration settings"
+          },
+          "Parameters": [
+            "NotificationType",
+            "WizAccessRole",
+            "CloudTrailBucketName"
+          ]
+        },
+        {
+          "Label": {
+            "default": "Advanced ETRA integration settings"
+          },
+          "Parameters": [
+            "PreExistingTopicName"
+          ]
+        }
+      ]
+    }
+  },
+  "Conditions": {
+    "CreateSNSTopic": {
+      "Fn::Equals": [
+        {
+          "Ref": "PreExistingTopicName"
+        },
+        ""
+      ]
+    },
+    "NotificationTypeCloudTrail": {
+      "Fn::Equals": [
+        {
+          "Ref": "NotificationType"
+        },
+        "cloudtrail"
+      ]
+    },
+    "NotificationTypeS3": {
+      "Fn::Not": [
+        {
+          "Condition": "NotificationTypeCloudTrail"
+        }
+      ]
+    }
+  },
+  "Resources": {
+    "WizLogsQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "wiz-cloudtrail-logs-queue"
+      }
+    },
+    "WizLogsQueuePolicyAllow": {
+      "Type": "AWS::SQS::QueuePolicy",
+      "Properties": {
+        "Queues": [
+          {
+            "Ref": "WizLogsQueue"
+          }
+        ],
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Sid": "Allow-SNS-SendMessage",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "sns.amazonaws.com"
+              },
+              "Action": "sqs:SendMessage",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "WizLogsQueue",
+                  "Arn"
+                ]
+              },
+              "Condition": {
+                "ArnEquals": {
+                  "aws:SourceArn": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Fn::Sub": "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:"
+                        },
+                        {
+                          "Fn::If": [
+                            "CreateSNSTopic",
+                            {
+                              "Fn::GetAtt": [
+                                "WizLogsNotficationTopic",
+                                "TopicName"
+                              ]
+                            },
+                            {
+                              "Ref": "PreExistingTopicName"
+                            }
+                          ]
+                        }
+                      ]
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "Sid": "Allow-WizAccess-RecvDeleteMsg",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Ref": "WizAccessRole"
+                }
+              },
+              "Action": [
+                "sqs:DeleteMessage",
+                "sqs:ReceiveMessage",
+                "sqs:ChangeMessageVisibility"
+              ],
+              "Resource": {
+                "Fn::GetAtt": [
+                  "WizLogsQueue",
+                  "Arn"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "WizLogsNotficationTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Condition": "CreateSNSTopic",
+      "Properties": {
+        "TopicName": "wiz-cloudtrail-logs-notify"
+      }
+    },
+    "WizLogsNotficationQueueSubscription": {
+      "Type": "AWS::SNS::Subscription",
+      "Properties": {
+        "TopicArn": {
+          "Fn::If": [
+            "CreateSNSTopic",
+            {
+              "Ref": "WizLogsNotficationTopic"
+            },
+            {
+              "Fn::Join": [
+                "",
+                [
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:"
+                  },
+                  {
+                    "Ref": "PreExistingTopicName"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        "Protocol": "sqs",
+        "Endpoint": {
+          "Fn::GetAtt": [
+            "WizLogsQueue",
+            "Arn"
+          ]
+        },
+        "RawMessageDelivery": true
+      }
+    },
+    "WizLogsNotificationTopicPolicyAllow": {
+      "Type": "AWS::SNS::TopicPolicy",
+      "Condition": "CreateSNSTopic",
+      "Properties": {
+        "Topics": [
+          {
+            "Ref": "WizLogsNotficationTopic"
+          }
+        ],
+        "PolicyDocument": {
+          "Fn::If": [
+            "NotificationTypeCloudTrail",
+            {
+              "Statement": [
+                {
+                  "Sid": "AWSCloudTrailSNSPolicy20150319",
+                  "Effect": "Allow",
+                  "Principal": {
+                    "Service": "cloudtrail.amazonaws.com"
+                  },
+                  "Action": "SNS:Publish",
+                  "Resource": {
+                    "Ref": "WizLogsNotficationTopic"
+                  },
+                  "Condition": {
+                    "StringEquals": {
+                      "aws:SourceArn": {
+                        "Ref": "CloudTrailARN"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "Statement": [
+                {
+                  "Sid": "AllowAWSS3Notification",
+                  "Effect": "Allow",
+                  "Principal": {
+                    "Service": "s3.amazonaws.com"
+                  },
+                  "Action": "SNS:Publish",
+                  "Resource": {
+                    "Ref": "WizLogsNotficationTopic"
+                  },
+                  "Condition": {
+                    "ArnLike": {
+                      "aws:SourceArn": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            {
+                              "Fn::Sub": "arn:${AWS::Partition}:s3:*:*:"
+                            },
+                            {
+                              "Ref": "CloudTrailBucketName"
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    "StringEquals": {
+                      "aws:SourceAccount": {
+                        "Fn::Sub": "${AWS::AccountId}"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "WizAllowCloudTrailBucketAccessPolicy": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "Description": "Allow Wiz access to cloudtrail bucket",
+        "Roles": [
+          {
+            "Fn::Select": [
+              "1",
+              {
+                "Fn::Split": [
+                  "/",
+                  {
+                    "Ref": "WizAccessRole"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "AllowWizAccessCloudTrailS3ListGetLocation",
+              "Effect": "Allow",
+              "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListBucket"
+              ],
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::"
+                    },
+                    {
+                      "Ref": "CloudTrailBucketName"
+                    }
+                  ]
+                ]
+              },
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "true"
+                }
+              }
+            },
+            {
+              "Sid": "AllowWizAccessCloudTrailS3Get",
+              "Effect": "Allow",
+              "Action": [
+                "s3:GetObject"
+              ],
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::"
+                    },
+                    {
+                      "Ref": "CloudTrailBucketName"
+                    },
+                    "/*"
+                  ]
+                ]
+              },
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "true"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
